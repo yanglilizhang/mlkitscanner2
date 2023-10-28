@@ -24,6 +24,16 @@ afterEvaluate {
                 artifact generateSourcesJar
             }
         }
+        repositories {
+            maven {
+                url rootProject.ext.aarInfo.repositoryUrl
+                //nexus3没有开启匿名用户访问的话，添加认证信息
+                credentials{
+                    username = rootProject.ext.aarInfo.username
+                    password = rootProject.ext.aarInfo.password
+                }
+            }
+        }
     }
 }
 
