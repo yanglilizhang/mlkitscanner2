@@ -1,0 +1,32 @@
+ext {
+    //android开发版本配置
+    android = [
+            compileSdkVersion: 34,//aac最低支持
+            minSdkVersion    : 23,
+            targetSdkVersion : 28,
+            versionCode      : 100,
+            versionName      : "1.0.0",
+    ]
+    //发布aar信息
+    aarInfo = [
+            pomDescription: "二维码扫描框架",
+            pomArtifactId : "mlkitscanner",
+            pomGroupId    : "com.xxy.mlkitscanner",
+            repositoryUrl : "https://maven.pkg.github.com/xxy2019/mlkitscanner",
+            username      : "xxy2023",
+            password      : "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"
+    ]
+    //依赖第三方配置
+    dependencies = [
+            'appcompat'               : "androidx.appcompat:appcompat:1.4.1",
+            'material'                : "com.google.android.material:material:1.5.0",
+            'barcode-scanning'        : "com.google.mlkit:barcode-scanning:17.0.2",
+            'camera-core'             : "androidx.camera:camera-core:1.0.2",
+            'camera-camera2'          : "androidx.camera:camera-camera2:1.0.2",
+            'camera-lifecycle'        : "androidx.camera:camera-lifecycle:1.0.2",
+            'camera-view'             : "androidx.camera:camera-view:1.0.0-alpha25",
+            'zxing'                   : "com.google.zxing:core:3.3.3"
+    ]
+}
+
+

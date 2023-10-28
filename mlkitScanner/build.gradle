@@ -1,0 +1,65 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
+}
+
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                version = rootProject.ext.android.versionName
+                description = rootProject.ext.aarInfo.pomDescription
+                //上传的类库名称
+                artifactId = rootProject.ext.aarInfo.pomArtifactId
+                groupId = rootProject.ext.aarInfo.pomGroupId
+                // 必须有这个 否则不会上传AAR包
+                afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+                // 上传source，这样使用方可以看到方法注释
+                artifact generateSourcesJar
+            }
+        }
+    }
+}
+
+android {
+    namespace 'com.xxy.mlkitscanner'
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compileOnly rootProject.ext.dependencies["appcompat"]
+    compileOnly rootProject.ext.dependencies["material"]
+    compileOnly rootProject.ext.dependencies["barcode-scanning"]
+    compileOnly rootProject.ext.dependencies["camera-core"]
+    compileOnly rootProject.ext.dependencies["camera-camera2"]
+    compileOnly rootProject.ext.dependencies["camera-lifecycle"]
+    compileOnly rootProject.ext.dependencies["camera-view"]
+    compileOnly rootProject.ext.dependencies["zxing"]
+}
