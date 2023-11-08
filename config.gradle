@@ -14,7 +14,7 @@ ext {
             pomGroupId    : "com.xxy.mlkitscanner",
             repositoryUrl : "https://maven.pkg.github.com/xxy2019/mlkitscanner",
             username      : "xxy2023",
-            password      : "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"
+            password      : "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"
     ]
     //依赖第三方配置
     dependencies = [
