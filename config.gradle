@@ -4,8 +4,8 @@ ext {
             compileSdkVersion: 34,//aac最低支持
             minSdkVersion    : 23,
             targetSdkVersion : 28,
-            versionCode      : 100,
-            versionName      : "1.0.0",
+            versionCode      : 101,
+            versionName      : "1.0.1",
     ]
     //发布aar信息
     aarInfo = [
@@ -14,7 +14,7 @@ ext {
             pomGroupId    : "com.xxy.mlkitscanner",
             repositoryUrl : "https://maven.pkg.github.com/xxy2019/mlkitscanner",
             username      : "xxy2023",
-            password      : "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"
+            password      : "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"
     ]
     //依赖第三方配置
     dependencies = [

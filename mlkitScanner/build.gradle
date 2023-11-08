@@ -22,6 +22,18 @@ afterEvaluate {
                 afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
                 // 上传source，这样使用方可以看到方法注释
                 artifact generateSourcesJar
+                //配置发布带有依赖的库
+                pom.withXml{
+                    def dependenciesNode = asNode().appendNode('dependencies')
+                    configurations.compileOnly.allDependencies.withType(ModuleDependency){ ModuleDependency dp ->
+                        if(dp.name != "appcompat" && dp.name != "material"){
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', dp.group)
+                            dependencyNode.appendNode('artifactId', dp.name)
+                            dependencyNode.appendNode('version', dp.version)
+                        }
+                    }
+                }
             }
         }
         repositories {
