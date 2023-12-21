@@ -68,6 +68,11 @@ public class BarcodeAnalyser implements ImageAnalysis.Analyzer {
     @Override
     public void analyze(@NonNull final ImageProxy imageProxy) {
         Bitmap bitmap = ImageConvertorKt.toBitmap(imageProxy);
+        int rotationDegrees = imageProxy.getImageInfo().getRotationDegrees();
+        if (rotationDegrees != 0) {
+            assert bitmap != null;
+            bitmap = ImageConvertorKt.rotate(bitmap,rotationDegrees);
+        }
         if (mPreviewView != null) {
             //bitmap转为16：9
             int height = mPreviewView.getHeight();
