@@ -9,7 +9,7 @@ import com.xxy.mlkitscanner.ui.ScanPreviewActivity;
 
 /**
  * Created by maning on 2017/12/7.
- * 启动扫描的主类
+ * 启动扫描的主类 test
  */
 
 public class MNScanManager {
